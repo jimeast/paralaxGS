@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+	<head>
+	  <title>Parallax + GS</title>
+
+		<style> 
+		   body {
+				background: #dddddd;
+        position: relative;
+			}
+
+/*car*/
+/*    #demo{
+      position: absolute;
+      width: 788px;
+      height: 340px;
+      margin: 50px auto 0 auto;
+      padding-top:10px;
+      background: #fff url(img/landscape.jpg);
+        } */
+ 
+
+      #paralax {
+            position: absolute;
+            left: 20px;
+            top: 85px;
+            background: #ffffff;
+            cursor: crosshair;
+            margin-left: 10px;
+            margin-top: 10px;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+             overflow: hidden;
+             z-index: -1;          
+      }
+
+       #car{
+            position: absolute;
+            left: -400px;
+            background: url(img/cars_tiled.png) repeat-y;
+            width: 400px;               
+            height: 160px;            
+            top: 380px;
+           overflow: hidden;            
+          /*z-index: 4;*/
+        }
+
+     /* #car_wrapper {
+            position: absolute;
+            left: 30px;
+            top: 374px; 
+            width: 1000px;
+            height: 160px;
+            background-color: rgba(255,155,0, 0.3); 
+            overflow: hidden;            
+            }*/
+
+		</style>
+
+   </head>
+
+  <body>
+
+
+<div id="car"></div>
+<div id="car_wrapper">
+    <canvas id='paralax' width='1000' height='440'>
+      Canvas not supported
+    </canvas>
+<!-- <div id="box"></div> -->
+</div>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+<script src="http://jimslounge.com/gs/min/TweenMax.min.js"></script>
+<script src="http://jimslounge.com/gs/min/utils/Draggable.min.js"></script>
+
+
+ <script>
+    $(document).ready(function() {
+        
+        var $car = $("#car"),
+          // $message = $("#message"),
+           count = 0,
+            tween;
+
+        tween = TweenMax.to($car, 1, {left:1050, repeat:4, repeatDelay:0.2, ease:Linear.easeNone, //onStart:startHandler,
+         onRepeat:repeatHandler, onComplete:completeHandler, delay:1});
+
+        function repeatHandler() {
+            count++;
+            TweenLite.set($car, {backgroundPosition:"0px -=640px"});
+        }
+
+        function completeHandler() {
+        //     $message.text('The End');
+        console.log('done!');
+        }
+    });
+</script>
+
+
+   <script src='paralax1.js'></script> 
+
+  </body>
+</html>
